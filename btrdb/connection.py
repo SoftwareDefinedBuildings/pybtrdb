@@ -33,13 +33,7 @@ class UUIDResolver(object):
         self.port = port
         constring = "mysql://{}:{}@{}:{}/{}".format(
             username, password, server, port, database)
-        print constring
-        eng = sqlalchemy.create_engine("mysql://uuidresolver:simplepass@miranda.cs.berkeley.edu:3306/upmu")
-        print dir(eng)
-        print eng.engine
-        print eng.connect
-        print eng.raw_connection
-        print eng.url
+        eng = sqlalchemy.create_engine(connstring)
         self.conn = eng.connect()
 
     def resolve(self, path):

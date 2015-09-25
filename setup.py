@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'btrdb',
   packages = ['btrdb'],
-  version = '0.1',
+  version = '0.2',
   install_requires = ['isodate', 'requests'],
   description = 'Python bindings for BTrDB',
   author = 'Michael P Andersen',
