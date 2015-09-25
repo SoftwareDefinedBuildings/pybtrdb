@@ -3,8 +3,10 @@
 This is just a very basic API for now. We hope to flesh it out soon. The basic
 dependencies are covered by pip, so you can use:
 
+```
 apt-get install python-pip
 pip install btrdb
+```
 
 # UUIDResolver
 
