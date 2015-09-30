@@ -31,7 +31,7 @@ class UUIDResolver(object):
         """
         self.server = server
         self.port = port
-        constring = "mysql://{}:{}@{}:{}/{}".format(
+        connstring = "mysql://{}:{}@{}:{}/{}".format(
             username, password, server, port, database)
         eng = sqlalchemy.create_engine(connstring)
         self.conn = eng.connect()
