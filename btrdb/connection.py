@@ -87,7 +87,7 @@ class HTTPConnection(object):
         in nanoseconds. An estimation of the number of points that will be done is
         performed in advance, and the query is aborted if this exceeds 150K
         """
-        if est_raw_count(uuid, start, end) > self.MAX_RAW:
+        if self.est_raw_count(uuid, start, end) > self.MAX_RAW:
             raise Exception("Raw query is too large")
         raise Exception("This feature not implemented yet")
 
@@ -100,8 +100,9 @@ class HTTPConnection(object):
         if pw is None:
             pw = int(math.log(end-start,2)) - 10
         else:
-            if self.est_stat_count(start, end) > 2048:
-                raise Exception("This statistical query is too big")
+            statcount = self.est_stat_count(start, end, pw)
+            if statcount > 2048:
+                raise Exception("This statistical query is too big: "+str(statcount))
 
         r = requests.get("http://{}:{}/data/uuid/{}?starttime={}&endtime={}&pw={}&unitoftime=ns"
             .format(self.server, self.port, uuid, start, end, pw))
