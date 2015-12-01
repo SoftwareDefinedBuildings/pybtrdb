@@ -72,8 +72,8 @@ class HTTPConnection(object):
         """
         wwidth = (end-start) / 16
         pw = int(math.log(wwidth, 2))
-        rstart = start & ((1<<pw)-1)
-        rend = end & ((1<<pw)-1)
+        rstart = start & ~((1<<pw)-1)
+        rend = end & ~((1<<pw)-1)
         rend += 1<<pw
         r = requests.get("http://{}:{}/data/uuid/{}?starttime={}&endtime={}&pw={}&unitoftime=ns"
             .format(self.server, self.port, uuid, rstart, rend, pw))
